@@ -1,0 +1,30 @@
+{% extends 'mahasiswa/base.html' %}
+{% block content %}
+<h2>Edit Mahasiswa</h2>
+<div class="form-card">
+  {% if error %}
+    <div class="form-error">{{ error }}</div>
+  {% endif %}
+  <form method="post">
+    {% csrf_token %}
+    <div class="form-field">
+      <label for="nim">NIM</label>
+      <input type="text" name="nim" id="nim" value="{{ mhs.nim }}" required>
+    </div>
+    <div class="form-field">
+      <label for="nama">Nama</label>
+      <input type="text" name="nama" id="nama" value="{{ mhs.nama }}" required>
+    </div>
+    <div class="form-field">
+      <label for="programstudi">Program Studi</label>
+      <input type="text" name="programstudi" id="programstudi" value="{{ mhs.programstudi }}" required>
+    </div>
+    <div class="form-field">
+      <label for="angkatan">Angkatan</label>
+      <input type="number" name="angkatan" id="angkatan" value="{{ mhs.angkatan }}" required>
+    </div>
+    <button type="submit" class="btn">Update</button>
+    <a href="{% url 'daftar_mahasiswa' %}" class="btn secondary">Kembali</a>
+  </form>
+</div>
+{% endblock %}

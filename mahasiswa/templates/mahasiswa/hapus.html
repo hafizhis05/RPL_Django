@@ -1,0 +1,12 @@
+{% extends 'mahasiswa/base.html' %}
+{% load static %}
+{% block title %}Hapus Mahasiswa{% endblock %}
+{% block content %}
+  <h2>Hapus Mahasiswa</h2>
+  <p>Apakah Anda yakin ingin menghapus mahasiswa "{{ mahasiswa.nama }}" (NIM: {{ mahasiswa.nim }})?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Ya, Hapus</button>
+    <a href="{% url 'daftar_mahasiswa' %}">Batal</a>
+  </form>
+{% endblock %}

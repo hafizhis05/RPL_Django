@@ -1,0 +1,20 @@
+{% extends 'mahasiswa/base.html' %}
+{% load static %}
+
+{% block title %}Beranda - Praktikum RPL{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <img src="{% static 'mahasiswa/img/logo.png' %}" alt="logo" class="logo" />
+    <h2>Selamat Datang di Praktikum RPL</h2>
+    <p>Ini adalah halaman utama aplikasi. Silakan masuk terlebih dahulu untuk mengelola data mahasiswa atau lihat daftar mahasiswa jika Anda sudah login.</p>
+
+    <div class="hero-actions">
+        {% if user.is_authenticated %}
+            <a href="{% url 'daftar_mahasiswa' %}" class="btn">Lihat Daftar Mahasiswa</a>
+        {% else %}
+            <a href="{% url 'login' %}" class="btn">Login</a>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

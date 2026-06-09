@@ -1,0 +1,49 @@
+{% extends 'mahasiswa/base.html' %}
+{% load static %}
+{% block title %}Daftar Mahasiswa{% endblock %}
+{% block content %}
+  <div class="page-header">
+    <div class="page-heading">
+      <p class="page-subtitle">Kelola data mahasiswa dengan mudah dan cepat.</p>
+      <h2>Daftar Mahasiswa</h2>
+    </div>
+    <div class="page-actions">
+      <a href="{% url 'index' %}" class="btn secondary">Beranda</a>
+      <a href="{% url 'tambah_mahasiswa' %}" class="btn">Tambah Mahasiswa</a>
+    </div>
+  </div>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>NIM</th>
+          <th>Nama</th>
+          <th>Program Studi</th>
+          <th>Angkatan</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for mhs in mahasiswas %}
+          <tr>
+            <td>{{ mhs.nim }}</td>
+            <td>{{ mhs.nama }}</td>
+            <td>{{ mhs.programstudi }}</td>
+            <td>{{ mhs.angkatan }}</td>
+            <td class="action-links">
+              <a href="{% url 'edit_mahasiswa' mhs.id %}" class="btn-link edit">Edit</a>
+              <a href="{% url 'hapus_mahasiswa' mhs.id %}" class="btn-link delete">Hapus</a>
+            </td>
+          </tr>
+        {% empty %}
+          <tr class="empty-row">
+            <td colspan="5">
+              <div class="empty-state">Belum ada data mahasiswa. Tambahkan data baru untuk memulai.</div>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

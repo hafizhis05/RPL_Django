@@ -1,0 +1,35 @@
+{% load static %} 
+<!DOCTYPE html> 
+<html lang="id"> 
+<head> 
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <title>{% block title %}RPL Django{% endblock %}</title> 
+    {% load static %} 
+    <link rel="stylesheet" href="{% static 'mahasiswa/css/style.css' %}"> 
+</head> 
+<body> 
+    <header> 
+        <div class="header-container">
+            <h1>Praktikum RPL - Django</h1>
+            <nav class="header-nav">
+                {% if user.is_authenticated %}
+                    <span>Selamat datang, {{ user.username }}!</span>
+                    <a href="{% url 'logout' %}" class="nav-link">Logout</a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="nav-link">Login</a>
+                {% endif %}
+            </nav>
+        </div>
+    </header> 
+    <main> 
+        {% block content %}{% endblock %} 
+    </main> 
+    <footer> 
+        <center>
+            <p>&copy; 2026 - Praktikum</p>
+        </center>
+    </footer> 
+    <script src="{% static 'mahasiswa/js/main.js' %}"></script> 
+</body> 
+</html> 
